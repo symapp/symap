@@ -10,6 +10,7 @@ on:
 jobs:
   publish:
     name: Publish to Cloudflare Pages
+
     runs-on: ubuntu-latest
 
     permissions:
