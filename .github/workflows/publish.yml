@@ -9,14 +9,25 @@ on:
 
 jobs:
   publish:
+    name: Publish to Cloudflare Pages
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       deployments: write
-    name: Publish to Cloudflare Pages
+
+    strategy:
+      matrix:
+        node-version: [22]
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
 
       - name: Build
         run: npm run build
