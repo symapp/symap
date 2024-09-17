@@ -7,7 +7,7 @@ on:
     branches: [ "master", "dev" ]
 
 jobs:
-  install-dependencies:
+  quality-check:
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,24 +21,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: Setup dependency caching
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
       - run: npm ci
 
-  test:
-    needs: install-dependencies
-    runs-on: ${{ needs.get-runner.outputs.RUNNER }}
-    steps:
       - name: Run tests
         run: npm run tests
 
-  lint:
-    needs: install-dependencies
-    runs-on: ${{ needs.get-runner.outputs.RUNNER }}
-    steps:
       - name: Run lint
         run: npm run lint
