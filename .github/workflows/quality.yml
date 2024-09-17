@@ -7,17 +7,7 @@ on:
     branches: [ "master", "dev" ]
 
 jobs:
-  cache-dependencies:
-    - name: Setup dependency caching
-      id: cache
-      uses: actions/cache@v3
-      with:
-        path: ./node_modules
-        key: modules-${{ hashFiles('package-lock.json') }}
-
   install-dependencies:
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [22]
@@ -29,6 +19,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: Setup dependency caching
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
       - run: npm ci
 
   test:
