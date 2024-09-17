@@ -1,21 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-      providers: [
-        provideHttpClientTesting()
-      ]
+      imports: [NoopAnimationsModule],
+      declarations: [AppComponent],
+      providers: [provideHttpClientTesting()],
     }).compileComponents();
   });
 
