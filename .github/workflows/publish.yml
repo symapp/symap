@@ -35,7 +35,7 @@ jobs:
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
-          apiToken: $secrets.CLOUDFLARE_API_TOKEN_MASTER
+          apiToken: ${{ CLOUDFLARE_API_TOKEN_MASTER }}
           accountId: 0b8a40ece224666bc2c0a0c7e6d4a59e
           projectName: symap
           directory: dist/symap/browser
