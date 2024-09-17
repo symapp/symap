@@ -7,7 +7,7 @@ on:
     branches: [ "master", "dev" ]
 
 jobs:
-  quality-check:
+  install-dependencies:
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,16 +15,24 @@ jobs:
         node-version: [22]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
 
-    - name: Run tests
-      run: npm run test
+  test:
+    needs: install-dependencies
+    runs-on: ${{ needs.get-runner.outputs.RUNNER }}
+    steps:
+      - name: Run tests
+        run: npm run tests
 
-    - name: Run lint
-      run: npm run lint
+  lint:
+    needs: install-dependencies
+    runs-on: ${{ needs.get-runner.outputs.RUNNER }}
+    steps:
+      - name: Run lint
+        run: npm run lint
