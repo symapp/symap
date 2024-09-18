@@ -4,7 +4,7 @@ run-name: publish /${{ github.ref_name }} on cloudflare
 on:
   workflow_run:
     workflows: ["quality"]
-    branches: ["master", "dev"]
+    branches: ["master"]
     types:
       - completed
 
