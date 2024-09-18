@@ -1,4 +1,5 @@
 name: quality
+run-name: quality ${{ github.ref_name }}
 
 on:
   push:
