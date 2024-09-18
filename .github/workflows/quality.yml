@@ -1,5 +1,5 @@
 name: quality
-run-name: quality ${{ github.ref_name }}
+run-name: check quality for /${{ github.ref_name }}
 
 on:
   push:
