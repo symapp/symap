@@ -1,5 +1,5 @@
 name: publish
-run-name: publish /${{ github.ref_name }} on cloudplare
+run-name: publish /${{ github.ref_name }} on cloudflare
 
 on:
   workflow_run:
@@ -40,10 +40,5 @@ jobs:
           accountId: 0b8a40ece224666bc2c0a0c7e6d4a59e
           projectName: symap
           directory: dist/symap/browser
-          # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          # Optional: Switch what branch you are publishing to.
-          # By default this will be the branch which triggered this workflow
-          branch: ${{ github.ref_name }}
-          # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
           wranglerVersion: '3'
