@@ -37,6 +37,7 @@
               }
             ],
             "styles": [
+              "src/styles/theme.scss",
               "src/styles.css"
             ],
             "scripts": []
